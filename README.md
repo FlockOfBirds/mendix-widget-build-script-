@@ -52,9 +52,9 @@ exports.settings = {
 "widgetName": "MyAwesomeWidget",
 "scripts": {
     "pretest": "<build script, output the widget into 'dist/<version>'>",
-    "test": "npm run <some other tests> && npm run test:conditional",
+    "test": "npm run test:unit && npm run test:conditional",
     "test:conditional": "node ./node_modules/mendix-widget-build-script/dist/CheckPullRequestFromFork.js && echo 'Skip tests on forked pull request' || npm run deployAndTest",
-    "deployAndTest": "npm run deploy && npm run <your integration test>",
+    "deployAndTest": "npm run deploy && npm run test:e2e",
     "deploy": " npm run updateProject && npm run deployApp",
     "updateProject": "node ./node_modules/mendix-widget-build-script/dist/UpdateMxProject.js",
     "deployApp": "node ./node_modules/mendix-widget-build-script/dist/DeployMxApp.js"
@@ -91,6 +91,12 @@ Note: that the environment variables in the travis-ci.org can be used to overwri
 7) Commit the changes into your repository (Except the local config)
 
 8) Checkout how your build is doing `https://travis-ci.org/<user/org>/<repo>/`
+
+## Dependencies
+
+1) selenium-standalone
+
+2) webdriverio
 
 ## Development
 
